@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 
 const axios = require("axios");
 
@@ -9,7 +9,7 @@ module.exports.getAccessToken = async (event) => {
     "&client_secret=dfqhimgcbk1h77l1fl3jbb1mn8" + // Meetup OAuth Secret
     "&grant_type=authorization_code" +
     "&redirect_uri=https://rajeski.github.io/" + // Meetup Redirect URL
-    "&code=https://rajeski.github.io/meetup/?code=dfqhimgcbk1h77l1fl3jbb1mn8"; // This is confusing me
+    "&code=https://rajeski.github.io/meetup/?code=dfqhimgcbk1h77l1fl3jbb1mn8";
 
   const info = await axios.post(MEETUP_OAUTH_URL);
 
