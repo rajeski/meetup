@@ -1,15 +1,15 @@
-//"use strict";
+"use strict";
 
 const axios = require("axios");
 
 module.exports.getAccessToken = async (event) => {
   const MEETUP_OAUTH_URL =
-    +"https://secure.meetup.com/oauth2/access" +
+    "https://secure.meetup.com/oauth2/access" +
     "?client_id=mad5k15puih83kp0ogmb35a82b" + // Meetup OAuth Key
     "&client_secret=dfqhimgcbk1h77l1fl3jbb1mn8" + // Meetup OAuth Secret
     "&grant_type=authorization_code" +
-    "&redirect_uri=https://rajeski.github.io/" + // Meetup Redirect URL
-    "&code=https://rajeski.github.io/meetup/?code=dfqhimgcbk1h77l1fl3jbb1mn8";
+    "&redirect_uri=https://rajeski.github.io/meetup/" + // Meetup Redirect URL
+    "&code=dfqhimgcbk1h77l1fl3jbb1mn8";
 
   const info = await axios.post(MEETUP_OAUTH_URL);
 
