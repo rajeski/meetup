@@ -24,7 +24,7 @@ provider:
   name: aws
   runtime: nodejs8.10
   region: ap-northeast-1
-  timeout: 60 # optional, in seconds, default is 6
+  timeout: 30 # optional, in seconds, default is 6
 
 # you can overwrite defaults here
 #  stage: dev
@@ -64,8 +64,8 @@ functions:
     handler: handler.getAccessToken
     events:
       - http:
-        path: api/token/{code}
-        method: get
+          path: api/token/{code}
+          method: get
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
