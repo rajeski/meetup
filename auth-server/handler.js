@@ -9,7 +9,7 @@ module.exports.getAccessToken = async (event) => {
     "&client_secret=dfqhimgcbk1h77l1fl3jbb1mn8" + // Meetup OAuth Secret
     "&grant_type=authorization_code" +
     "&redirect_uri=https://rajeski.github.io/meetup/" + // Meetup Redirect URL
-    "&code=dfqhimgcbk1h77l1fl3jbb1mn8";
+    "&code=862bca7b9dd4c00";
 
   const info = await axios.post(MEETUP_OAUTH_URL);
 
