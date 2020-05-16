@@ -4,7 +4,7 @@ import Event from "../Event";
 import EventList from "../EventList";
 
 describe("<Event /> component", () => {
-  test("render the correct number of events", () => {
+  test("render correct number of events", () => {
     const EventListWrapper = shallow(<EventList />);
     EventListWrapper.setState({
       events: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],

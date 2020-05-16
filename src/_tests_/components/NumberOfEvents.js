@@ -1,30 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
+import { shallow } from "enzyme";
+import NumberOfEvents from "../components/NumberOfEvents";
 
-class NumberOfEvents extends Component {
-  state = {
-    number: 32,
-  };
+describe("<NumberOfEvents /> component", () => {
+  let NumberOfEventsWrapper;
+  beforeAll(() => {
+    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+  });
 
-  onNumberChanged = (event) => {
-    const value = event.target.value;
-    this.setState({ number: value });
-    this.props.updateEvents(null, null, value);
-  };
+  test("render event number input", () => {
+    expect(NumberOfEventsWrapper.find("input")).toHaveLength(1);
+  });
 
-  render() {
-    return (
-      <div className="NumberOfEvents">
-        <span>Show </span>
-        <input
-          type="number"
-          className="number-of-events"
-          onChange={this.onNumberChanged}
-          value={this.state.number}
-        />
-        <span> Events</span>
-      </div>
-    ); //return CF requirement
-  } //render CF requirement
-}
+  test("when no number was input, 32 is the default event number", () => {
+    expect(NumberOfEventsWrapper.state("eventNumber")).toBe(32);
+  });
 
-export default NumberOfEvents;
+  test("change state when number input changes", () => {
+    const eventObject = { target: { value: 25 } };
+    NumberOfEventsWrapper.find("input").simulate("change", eventObject);
+    expect(NumberOfEventsWrapper.state("eventNumber")).toBe(25);
+  });
+});

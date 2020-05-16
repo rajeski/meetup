@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Event from '../src/Event';
 
-state ={
-  events:[],
-}
-
 class EventList extends Component {
+
+  state ={
+    events:[],
+  }
+  
   render() {
     return (
       <ul className="EventList">

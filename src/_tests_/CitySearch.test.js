@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import CitySearch from "../components/CitySearch";
+import CitySearch from "./components/CitySearch";
 
 describe("<CitySearch /> component", () => {
   let CitySearchWrapper;
