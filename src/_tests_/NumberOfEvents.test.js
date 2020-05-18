@@ -1,4 +1,4 @@
-import React, { Component } from "react"; // Unsure why this value is never read / used
+import React, { Component } from "react";
 import { shallow } from "enzyme";
 import NumberOfEvents from "../NumberOfEvents";
 
@@ -8,18 +8,18 @@ describe("<NumberOfEvents /> component", () => {
     NumberOfEventsWrapper = shallow(<NumberOfEvents />);
   });
 
-  test("render a textbox element", () => {
+  test("render textbox element", () => {
     expect(NumberOfEventsWrapper.find(".numberOfEvents")).toHaveLength(1);
   });
 
-  test("render correct text input", () => {
+  test("render text input correctly", () => {
     const numberOfEvents = NumberOfEventsWrapper.state("numberOfEvents");
     expect(
       NumberOfEventsWrapper.find("#numberOfEvents__input").prop("value")
     ).toBe(numberOfEvents);
   });
 
-  test("state is changed when the input changes", () => {
+  test("change state when input changes", () => {
     const eventObject = { target: { value: 32 } };
     NumberOfEventsWrapper.find("#numberOfEvents__input").simulate(
       "change",
@@ -28,7 +28,7 @@ describe("<NumberOfEvents /> component", () => {
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(32);
   });
 
-  test("state is changed when the input changes", () => {
+  test("change state when input changes", () => {
     const eventObject = { target: { value: 24 } };
     NumberOfEventsWrapper.find("#numberOfEvents__input").simulate(
       "change",
@@ -37,7 +37,7 @@ describe("<NumberOfEvents /> component", () => {
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(24);
   });
 
-  test("input label displays show number of events", () => {
+  test("show number of events input label", () => {
     expect(NumberOfEventsWrapper.find(".numberOfEvents label")).toHaveLength(1);
   });
 });
