@@ -12,19 +12,22 @@ describe("<App /> component", () => {
   beforeAll(() => {
     AppWrapper = shallow(<App />);
   });
-  test("render list of events", () => {
+
+  test("render event(s) list", () => {
     expect(AppWrapper.find(EventList)).toHaveLength(1);
   });
+
   test("render CitySearch", () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1);
   });
+
   test("render NumberOfEvents", () => {
     expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1);
   });
 });
 
 describe("<App /> integration", () => {
-  test("get list of events after user selects a city", async () => {
+  test("get event (s) list after user selects a city", async () => {
     const AppWrapper = mount(<App />);
     AppWrapper.instance().updateEvents = jest.fn();
     AppWrapper.instance().forceUpdate();
@@ -35,14 +38,32 @@ describe("<App /> integration", () => {
     AppWrapper.unmount();
   });
 
-  test("change state after get list of events", async () => {
+  test("update event list after user changes number of events", () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.instance().updateEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    NumberOfEventsWrapper.instance().handleInputChanged({
+      target: { value: 1 },
+    });
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(
+      null,
+      null,
+      1
+    );
+    AppWrapper.unmount();
+  });
+
+  test("change the state after get event(s) list", async () => {
     const AppWrapper = shallow(<App />);
     AppWrapper.instance().updateEvents(1.1, 1.2);
     await AppWrapper.update();
     expect(AppWrapper.state("events")).toEqual(mockEvents.events);
+    AppWrapper.unmount();
   });
 
-  test("render correct list of events", () => {
+  test("render correct event(s) list", () => {
     const AppWrapper = mount(<App />);
     AppWrapper.setState({
       events: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],

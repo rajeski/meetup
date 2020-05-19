@@ -7,22 +7,27 @@ describe("<CitySearch /> component", () => {
   beforeAll(() => {
     CitySearchWrapper = shallow(<CitySearch />);
   });
+
   test("render text input", () => {
     expect(CitySearchWrapper.find(".city")).toHaveLength(1);
   });
-  test("render list of suggestions", () => {
+
+  test("render suggestion(s) list", () => {
     expect(CitySearchWrapper.find(".suggestions")).toHaveLength(1);
   });
+
   test("render text input correctly", () => {
     const query = CitySearchWrapper.state("query");
     expect(CitySearchWrapper.find(".city").prop("value")).toBe(query);
   });
-  test("change state when text input changes", () => {
+
+  test("change the state when text input changes", () => {
     const eventObject = { target: { value: "Berlin" } };
     CitySearchWrapper.find(".city").simulate("change", eventObject);
     expect(CitySearchWrapper.state("query")).toBe("Berlin");
   });
-  test("render list of suggestions correctly", () => {
+
+  test("render suggestion(s) list correctly", () => {
     const suggestions = CitySearchWrapper.state("suggestions");
     expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(
       suggestions.length
@@ -34,7 +39,7 @@ describe("<CitySearch /> component", () => {
     }
   });
 
-  test("click on suggestion changes query state and show an empty suggestion", () => {
+  test("click on suggestion(s) should change query state and empty suggestion(s) list", () => {
     CitySearchWrapper = shallow(<CitySearch updateEvents={() => {}} />);
     CitySearchWrapper.setState({
       suggestions: [
@@ -67,7 +72,7 @@ describe("<CitySearch /> component", () => {
 });
 
 describe("<CitySearch /> integration", () => {
-  test("get a list of cities when user searches for munich", async () => {
+  test("get a city(s) list when user searches for Munich", async () => {
     const CitySearchWrapper = shallow(<CitySearch />);
     CitySearchWrapper.find(".city").simulate("change", {
       target: { value: "Munich" },

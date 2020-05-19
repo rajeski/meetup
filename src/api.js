@@ -53,7 +53,7 @@ async function getEvents(lat, lon) {
       "https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public" +
       "&access_token=" +
       token;
-    // lat, lon is optional; if you have a lat and lon, you can add them
+    // lat, lon are optional and can be added with the correct access to this information (i.e., latitude and longitude)
     if (lat && lon) {
       url += "&lat=" + lat + "&lon=" + lon;
     }

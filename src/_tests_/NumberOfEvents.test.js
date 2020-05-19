@@ -5,10 +5,10 @@ import NumberOfEvents from "../NumberOfEvents";
 describe("<NumberOfEvents /> component", () => {
   let NumberOfEventsWrapper;
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    NumberOfEventsWrapper = shallow(<NumberOfEvents updateEvents={() => {}} />);
   });
 
-  test("render textbox element", () => {
+  test("render the textbox element", () => {
     expect(NumberOfEventsWrapper.find(".numberOfEvents")).toHaveLength(1);
   });
 
@@ -19,7 +19,7 @@ describe("<NumberOfEvents /> component", () => {
     ).toBe(numberOfEvents);
   });
 
-  test("change state when input changes", () => {
+  test("change state when the input is changed", () => {
     const eventObject = { target: { value: 32 } };
     NumberOfEventsWrapper.find("#numberOfEvents__input").simulate(
       "change",
@@ -28,7 +28,7 @@ describe("<NumberOfEvents /> component", () => {
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(32);
   });
 
-  test("change state when input changes", () => {
+  test("change state when the input is changed", () => {
     const eventObject = { target: { value: 24 } };
     NumberOfEventsWrapper.find("#numberOfEvents__input").simulate(
       "change",
@@ -37,7 +37,7 @@ describe("<NumberOfEvents /> component", () => {
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(24);
   });
 
-  test("show number of events input label", () => {
+  test("show the number of events input label", () => {
     expect(NumberOfEventsWrapper.find(".numberOfEvents label")).toHaveLength(1);
   });
 });

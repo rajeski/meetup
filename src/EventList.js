@@ -14,4 +14,5 @@ class EventList extends Component {
     );
   }
 }
+
 export default EventList;

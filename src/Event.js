@@ -15,6 +15,7 @@ class Event extends Component {
 
   render() {
     const showDetails = this.state.showDetails;
+
     return (
       <div className="event">
         <div className="event__Overview">
@@ -40,4 +41,5 @@ class Event extends Component {
     );
   }
 }
+
 export default Event;
