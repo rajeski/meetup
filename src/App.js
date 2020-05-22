@@ -1,3 +1,5 @@
+// Application Performance Monitoring: Atatus
+
 import React, { Component } from "react";
 import "./App.css";
 
