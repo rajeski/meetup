@@ -35,7 +35,13 @@ async function getSuggestions(query) {
       "&access_token=" +
       token;
     const result = await axios.get(url);
-    return result.data;
+    const events = result.data.events;
+    if (events.length) {
+      // Check if events exist
+      localStorage.setItem("lastEvents", JSON.stringify(events));
+    }
+
+    return events;
   }
 
   return [];
@@ -44,6 +50,11 @@ async function getSuggestions(query) {
 async function getEvents(lat, lon) {
   if (window.location.href.startsWith("http://localhost")) {
     return mockEvents.events;
+  }
+
+  if (!navigator.onLine) {
+    const events = localStorage.getItem("lastEvents");
+    return JSON.parse(events);
   }
 
   const token = await getAccessToken();
