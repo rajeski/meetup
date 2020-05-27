@@ -124,15 +124,11 @@ async function getOrRenewAccessToken(type, key) {
   if (type === "get") {
     // Lambda endpoint to get token by code
 
-    // Need to confirm this is the correct input
-
     url =
       "https://hhndtqe4gl.execute-api.ap-northeast-1.amazonaws.com/dev/api/token/" +
       key;
   } else if (type === "renew") {
     // Lambda endpoint to get token by refresh_token
-
-    // Need to confirm this is the correct input
 
     url =
       "https://hhndtqe4gl.execute-api.ap-northeast-1.amazonaws.com/dev/api/refreshtoken/" +
