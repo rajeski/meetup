@@ -59,11 +59,11 @@ class App extends Component {
   getData = () => {
     const next7Days = []; // Create empty array for the next 7 days
     const currentDate = moment(); // Today
-    // Loop 7 times for next 7 days
+    // The next 7 days
     for (let i = 0; i < 7; i += 1) {
       currentDate.add(1, "days"); // Add 1 day to current date, currentDate changes
-      const dateString = currentDate.format("YYYY-MM-DD"); // Format the date
-      // Use the countEventsOnADate function to count #events on this date
+      const dateString = currentDate.format("MM-DD-YYYY"); // Date Format
+      // Use countEventsOnADate function to count number of events on this date
       const count = this.countEventsOnADate(dateString);
       next7Days.push({ date: dateString, number: count }); // Add this date and number to the list
     }
