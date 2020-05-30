@@ -1,5 +1,5 @@
-import { mockEvents, mockEventsDefaultPage } from "./mock-events";
 import axios from "axios";
+import { mockEvents } from "./mock-events";
 
 async function getSuggestions(query) {
   if (window.location.href.startsWith("http://localhost")) {
@@ -37,39 +37,18 @@ async function getSuggestions(query) {
     return result.data;
   }
   return [];
-}
-
-async function getAccessToken() {
-  const accessToken = localStorage.getItem('access_token');
-
-  if (!accessToken) {
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
-
-    if (!code) {
-      window.location.href = "https://secure.meetup.com/oauth2/authorize?client_id=mad5k15puih83kp0ogmb35a82b&response_type=code&redirect_uri=https://rajeski.github.io/meetup/";
-      return null;
-    }
-    return getOrRenewAccessToken('get', code);
-  }
-
-  const lastSavedTime = localStorage.getItem('last_saved_time');
-
-  if (accessToken && (Date.now() - lastSavedTime < 3600000)) {
-    return accessToken;
-  }
-
-  const refreshToken = localStorage.getItem('refresh_token');
-  return getOrRenewAccessToken('renew', refreshToken);
-
-}
+};
 
 async function getEvents(lat, lon, page) {
   if (window.location.href.startsWith('http://localhost')) {
-    return mockEvents.events.slice(0, page !== '' ? page : mockEventsDefaultPage);
+    return mockEvents;
   }
-  const token = await getAccessToken();
+  if (!navigator.onLine) {
+    const events = localStorage.getItem('lastEvents');
+    return JSON.parse(events)
+  };
 
+  const token = await getAccessToken();
   if (token) {
     let url =
       "https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public" +
@@ -81,9 +60,33 @@ async function getEvents(lat, lon, page) {
       url += "&page=" + page;
     }
     const result = await axios.get(url);
-    return result.data.events;
+    return result.data;
   }
-}
+};
+
+function getAccessToken() {
+  const accessToken = localStorage.getItem('access_token');
+
+  if (!accessToken) {
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+
+    if (!code) {
+      window.location.href = "https://secure.meetup.com/oauth2/authorize?client_id=mad5k15puih83kp0ogmb35a82b&response_type=code&redirect_uri=https://rajeski.github.io/meetup/";
+    }
+    return getOrRenewAccessToken('get', code);
+  }
+
+  const lastSavedTime = localStorage.getItem('last_saved_time');
+
+  if (accessToken && (Date.now() - lastSavedTime < 3600000)) {
+    return accessToken;
+  }
+
+  const refreshToken = localStorage.getItem('refresh_token');
+
+  return getOrRenewAccessToken('renew', refreshToken);
+};
 
 async function getOrRenewAccessToken(type, key) {
   let url;
@@ -96,16 +99,16 @@ async function getOrRenewAccessToken(type, key) {
       key;
   }
 
-  // Use Axios to make a GET request to the endpoint
+  // Use Axios makes GET request to endpoint
   const tokenInfo = await axios.get(url);
 
-  // Save tokens to localStorage together with a timestamp
+  // Save time-stamped tokens to localStorage 
   localStorage.setItem("access_token", tokenInfo.data.access_token);
   localStorage.setItem("refresh_token", tokenInfo.data.refresh_token);
   localStorage.setItem("last_saved_time", Date.now());
 
-  // Return the access_token
+  // Return access_token
   return tokenInfo.data.access_token;
 }
 
-export { getSuggestions, getEvents };
+export { getSuggestions, getEvents, getAccessToken };
