@@ -18,8 +18,11 @@ module.exports.getAccessToken = async (event) => {
   return {
     statusCode: 200,
     headers: {
-      "Access-Control-Allow-Origin":
+      "Access-Control-Allow-Origin": [
         "*",
+        "https://www.atatus.com/accounts/5ec8e15c9be511400b0a2f00/projects",
+        "https://www.atatus.com/accounts/5ec8e15c9be511400b0a2f00/browser/5ec8e19cfe4a234c7cf851fb/dashboard?timeDur=1d&pageChartType=average&ajaxChartType=average",
+      ]
     },
     body: JSON.stringify({
       access_token: info.data.access_token,
