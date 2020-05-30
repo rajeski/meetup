@@ -1,3 +1,5 @@
+const mockEventsDefaultPage = 32;
+
 const mockEvents = {
   city: {
     id: 1007700,
@@ -60,4 +62,4 @@ const mockEvents = {
   ],
 };
 
-export { mockEvents };
+export { mockEvents, mockEventsDefaultPage };
