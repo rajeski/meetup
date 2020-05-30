@@ -16,8 +16,20 @@ import {
 } from "recharts";
 
 class App extends Component {
+  state = {
+    events: [],
+    page: null,
+    defaultCity: "",
+    lat: null,
+    lon: null,
+  };
+
   componentDidMount() {
-    getEvents().then((response) => this.setState({ events: response }));
+    getEvents().then((response) => {
+      console.log("test");
+      console.log(response.events);
+      this.setState({ events: response });
+    });
   }
 
   state = {
