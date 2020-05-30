@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import Event from "./Event";
+import Event from "./Event.js";
+import "./App.css";
 
 class EventList extends Component {
   render() {
+    if (EventList) return null;
     return (
       <ul className="EventList">
-        if!(events) return null
         {this.props.events.map((event) => (
           <li key={event.id}>
             <Event event={event} />
@@ -15,5 +16,4 @@ class EventList extends Component {
     );
   }
 }
-
 export default EventList;
