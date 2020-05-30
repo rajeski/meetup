@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import Event from "./Event.js";
-import "./App.css";
+import Event from "./Event";
+// import "./App.css";
 
 class EventList extends Component {
   render() {
