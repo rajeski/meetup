@@ -22,6 +22,7 @@ module.exports.getAccessToken = async (event) => {
         "*",
         "https://www.atatus.com/accounts/5ec8e15c9be511400b0a2f00/projects",
         "https://www.atatus.com/accounts/5ec8e15c9be511400b0a2f00/browser/5ec8e19cfe4a234c7cf851fb/dashboard?timeDur=1d&pageChartType=average&ajaxChartType=average",
+        "https://br-rx.atatus.com/track/browser/perf/session?apikey=3b182ffd828c4b6ba05f057c19336311&v=4.2.1-spa",
       ]
     },
     body: JSON.stringify({
