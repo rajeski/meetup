@@ -4,7 +4,7 @@ import "./App.css";
 
 class EventList extends Component {
   render() {
-    if (EventList) return null;
+    if (!this.props.events);
     return (
       <ul className="EventList">
         {this.props.events.map((event) => (
