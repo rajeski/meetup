@@ -60,7 +60,7 @@ class App extends Component {
     // Advance for the next seven days
 
     for (let i = 0; i < 7; i += 1) {
-      const dateString = currentDate.format('MM-DD-YYYY'); // US date format
+      const dateString = currentDate.format('YYYY-MM-DD'); // Non-US date format
       console.log(dateString)
 
 
