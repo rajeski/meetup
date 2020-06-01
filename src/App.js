@@ -69,8 +69,8 @@ class App extends Component {
       next7Days.push({ date: dateString, number: count }); // Add the specific date and number to the display list
       currentDate.add(1, 'days'); // Add one day to current date, currentDate changes
     }
-    return next7Days
-  }
+    return next7Days;
+  };
 
   render() {
     // console.log('test', this.state)
