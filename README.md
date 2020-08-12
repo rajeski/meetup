@@ -67,4 +67,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
-Note: For integration purposes, MeetUp's API is free for one month (but requires a subscription thereafter). 
+Note: For application integration purposes, MeetUp's API is free for one month (but requires a subscription thereafter). 
